@@ -3,9 +3,9 @@ import BgImage from '../../../Assets/images/bg.png';
 import Chair from '../../../Assets/images/chair.png';
 const Banner = () => {
   return (
-    <div style={{ backgroundImage: `url (${BgImage})` }}>
-      <div className="hero">
-        <div className="hero-content flex-col lg:flex-row-reverse ">
+    <div className="bg-contain bg-no-repeat" style={{ backgroundImage: `url(${BgImage})` }}>
+      <div className="hero min-h-screen">
+        <div className="hero-content  flex-col lg:flex-row-reverse ">
           <img src={Chair} className="rounded-lg lg:w-1/2 shadow-2xl" />
           <div className="lg:w-1/2">
             <h1 className="lg:text-5xl text-3xl font-bold">Your New Smile Starts Here</h1>
