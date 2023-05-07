@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, NavLink } from 'react-router-dom';
+import './Navbar.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const HandleToggleClick = () => {
     setOpen(!open);
   };
+
   const menuList = (
     <React.Fragment>
       <li onClick={HandleToggleClick}>
-        <Link to="/home">Home</Link>
+        <NavLink to="/home">Home</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/about">About</Link>
+        <NavLink to="/about">About</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/appointment">Appointment</Link>
+        <NavLink to="/appointment">Appointment</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/reviews">Reviews</Link>
+        <NavLink to="/reviews">Reviews</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/contact">Contact Us</Link>
+        <NavLink to="/contact">Contact Us</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/login">Log in</Link>
+        <NavLink to="/login">Log in</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <Link to="/register">Register</Link>
+        <NavLink to="/register">Register</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
         <button>Log Out</button>
@@ -57,7 +58,7 @@ const Navbar = () => {
             {open ? (
               <>
                 <ul
-                  tabIndex={0}
+                  tabIndex={1}
                   className="menu menu-compact  dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                   {menuList}
                 </ul>
