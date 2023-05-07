@@ -1,13 +1,11 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Routes/Routes/Routes';
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold">Doctors Portal</h1>
-      <button className="btn btn-info">Info</button>
-      <button className="btn btn-success">Success</button>
-      <button className="btn btn-warning">Warning</button>
-      <button className="btn btn-error">Error</button>
+    <div className="max-w-[1400px] mx-auto">
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 };
