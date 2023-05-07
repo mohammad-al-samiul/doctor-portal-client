@@ -7,9 +7,9 @@ const ExceptionalDental = () => {
   return (
     <div>
       <div className="hero mt-20">
-        <div className="hero-content lg:px-20 flex-col lg:flex-row">
-          <img className="lg:w-1/2 lg:h-[600px] rounded-lg" src={Treatment} />
-          <div className="px-5 ms-10">
+        <div className="hero-content flex-col lg:flex-row">
+          <img className="lg:h-[600px] rounded-lg" src={Treatment} />
+          <div className="lg:px-5 lg:mx-5 lg:w-1/2">
             <h1 className="lg:text-5xl font-bold text-3xl">
               Exceptional Dental Care, on Your Terms
             </h1>

@@ -6,12 +6,10 @@ import Button from '../../../Components/Button/Button';
 
 const MakeAppointment = () => {
   return (
-    <div className="mt-20">
-      <div className="hero min-h-screen text-white">
-        <div
-          style={{ backgroundImage: `url(${Appoinment})` }}
-          className="hero-content flex-col lg:flex-row p-0 m-0">
-          <img src={Doctor} className="-mt-24 hidden lg:block max-w-lg rounded-lg " />
+    <div style={{ backgroundImage: `url(${Appoinment})` }} className="mt-32 bg-cover bg-no-repeat">
+      <div className="hero text-white ">
+        <div className=" hero-content flex-col lg:flex-row p-0 m-0">
+          <img src={Doctor} className="-mt-24 hidden lg:block rounded-lg" />
           <div className="lg:w-1/2 p-10">
             <h4 className="text-secondary font-bold">Appointment</h4>
             <h1 className="lg:text-5xl text-2xl font-bold">Make an Appointment Today</h1>
@@ -23,7 +21,7 @@ const MakeAppointment = () => {
               page.
             </p>
             <Button>Get Started</Button>
-            <div className="pt-20">{''}</div>
+            <div className="lg:pt-20">{''}</div>
           </div>
         </div>
       </div>
