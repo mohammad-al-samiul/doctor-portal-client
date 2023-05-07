@@ -1,6 +1,7 @@
 import React from 'react';
 import BgImage from '../../../Assets/images/bg.png';
 import Chair from '../../../Assets/images/chair.png';
+import Button from '../../../Components/Button/Button';
 const Banner = () => {
   return (
     <div className="bg-contain bg-no-repeat" style={{ backgroundImage: `url(${BgImage})` }}>
@@ -13,9 +14,7 @@ const Banner = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
               exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
-            <button className="btn text-white border-none bg-gradient-to-r from-secondary to-accent shadow-2xl">
-              Get Started
-            </button>
+            <Button>Get Started</Button>
           </div>
         </div>
       </div>
