@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer
       style={{ backgroundImage: `url(${footerImg})` }}
-      className="footer p-10 mt-20 bg-cover bg-no-repeat bg-center ">
+      className="footer p-10 mt-20 lg:bg-cover bg-no-repeat lg:bg-center ">
       <div>
         <span className="footer-title">Services</span>
         <Link to="/" className="link link-hover">
