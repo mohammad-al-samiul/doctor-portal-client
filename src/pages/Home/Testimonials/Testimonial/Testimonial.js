@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-const Testimonial = (card) => {
+const Testimonial = ({ card }) => {
   // console.log(card);
-  const { name, desc, image, address } = card.card;
+  const { name, desc, image, address } = card;
 
   return (
     <div>
