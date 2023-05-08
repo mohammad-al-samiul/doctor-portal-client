@@ -2,9 +2,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './AppointmentCard.css';
-const AppointmentCard = ({ card }) => {
+const AppointmentCard = ({ card, setTreatment }) => {
   const { name, slots } = card;
-  // console.log(slots);
 
   return (
     <div className="card w-96 shadow-2xl">
@@ -15,9 +14,17 @@ const AppointmentCard = ({ card }) => {
           {slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available
         </p>
 
-        <label htmlFor="booking-modal" className="button">
-          Book Appointment
-        </label>
+        {slots.length === 0 ? (
+          <>
+            <button className="btn-disabled btn"> Book Appointment</button>
+          </>
+        ) : (
+          <>
+            <label onClick={() => setTreatment(card)} htmlFor="booking-modal" className="button">
+              Book Appointment
+            </label>
+          </>
+        )}
       </div>
     </div>
   );

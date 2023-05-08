@@ -5,6 +5,7 @@ import BookingModal from '../BookingModal/BookingModal';
 import AppointmentCard from './AppointmentCard/AppointmentCard';
 const AvailableAppointment = ({ selectedDate }) => {
   const [appointment, setAppointment] = useState([]);
+  const [treatment, setTreatment] = useState(null);
 
   useEffect(() => {
     fetch('appointmentOptions.json')
@@ -21,11 +22,11 @@ const AvailableAppointment = ({ selectedDate }) => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
         {appointment.map((card, i) => (
-          <AppointmentCard key={i} card={card}></AppointmentCard>
+          <AppointmentCard key={i} card={card} setTreatment={setTreatment}></AppointmentCard>
         ))}
       </div>
       <div>
-        <BookingModal></BookingModal>
+        <BookingModal treatment={treatment}></BookingModal>
       </div>
     </section>
   );
