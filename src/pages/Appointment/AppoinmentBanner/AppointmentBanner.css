@@ -1,0 +1,7 @@
+button.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  color: white;
+  opacity: 1;
+  background-image: linear-gradient(90deg, #19d3ae, #0fcfec);
+}

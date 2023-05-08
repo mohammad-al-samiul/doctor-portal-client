@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Button from '../../../../Components/Button/Button';
-
+import './AppointmentCard.css';
 const AppointmentCard = ({ card }) => {
   const { name, slots } = card;
   // console.log(slots);
@@ -15,7 +14,10 @@ const AppointmentCard = ({ card }) => {
         <p>
           {slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available
         </p>
-        <Button>Book Appointment</Button>
+
+        <label htmlFor="booking-modal" className="button">
+          Book Appointment
+        </label>
       </div>
     </div>
   );

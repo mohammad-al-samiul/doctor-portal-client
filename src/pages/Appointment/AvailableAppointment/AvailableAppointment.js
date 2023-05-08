@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
+import BookingModal from '../BookingModal/BookingModal';
 import AppointmentCard from './AppointmentCard/AppointmentCard';
 const AvailableAppointment = ({ selectedDate }) => {
   const [appointment, setAppointment] = useState([]);
@@ -22,6 +23,9 @@ const AvailableAppointment = ({ selectedDate }) => {
         {appointment.map((card, i) => (
           <AppointmentCard key={i} card={card}></AppointmentCard>
         ))}
+      </div>
+      <div>
+        <BookingModal></BookingModal>
       </div>
     </section>
   );
