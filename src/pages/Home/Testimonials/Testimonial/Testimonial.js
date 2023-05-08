@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Testimonial = (card) => {
-  console.log(card);
+  // console.log(card);
   const { name, desc, image, address } = card.card;
 
   return (
