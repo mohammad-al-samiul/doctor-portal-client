@@ -20,7 +20,10 @@ const AppointmentCard = ({ card, setTreatment }) => {
           </>
         ) : (
           <>
-            <label onClick={() => setTreatment(card)} htmlFor="booking-modal" className="button">
+            <label
+              onClick={() => setTreatment(card)}
+              htmlFor="booking-modal"
+              className=" btn button text-white">
               Book Appointment
             </label>
           </>

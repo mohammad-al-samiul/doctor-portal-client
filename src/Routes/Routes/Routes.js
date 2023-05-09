@@ -4,6 +4,7 @@ import Main from '../../Layouts/Main/Main';
 import Appointment from '../../Pages/Appointment/Appointment/Appointment';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
+import Signup from '../../Pages/Signup/Signup';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Signup />
       }
     ]
   }
