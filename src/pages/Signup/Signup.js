@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Signup = () => {
   const {
@@ -9,9 +11,26 @@ const Signup = () => {
     formState: { errors },
     handleSubmit
   } = useForm();
+  const { createUser } = useContext(AuthContext);
+  const [signupError, setSignupError] = useState('');
+
   const handleSignUp = (data) => {
     console.log(data);
+
+    const email = data.email;
+    const password = data.password;
+    setSignupError('');
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setSignupError(error.message);
+      });
   };
+
   return (
     <>
       <div className="w-full flex justify-center items-center">
@@ -68,6 +87,7 @@ const Signup = () => {
               {errors.password && <p className="text-red-600">{errors.password?.message}</p>}
             </div>
             <button className="mt-3 btn btn-primary w-full text-white">Register</button>
+            <div>{signupError && <p className="text-red-500">{signupError}</p>}</div>
             <label className="label ">
               <p className="label-text mx-auto ">
                 Already have an account?{' '}

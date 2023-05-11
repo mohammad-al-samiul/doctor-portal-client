@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './Login.css';
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit
   } = useForm();
+  const [loginError, setLoginError] = useState('');
+
   const handleLogin = (data) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+    setLoginError('');
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setLoginError(error.message);
+      });
   };
   return (
     <div className="w-full mt-8 flex justify-center items-center">
@@ -36,7 +51,7 @@ const Login = () => {
                 required: 'Password is required',
                 minLength: { value: 6, message: 'Password must be 6 characters' }
               })}
-              type="text"
+              type="password"
               className="input input-bordered w-full "
             />
             <label className="label">
@@ -49,7 +64,10 @@ const Login = () => {
             <button className="mt-4 btn text-white btn-primary  w-full" type="submit">
               Login
             </button>
+            {loginError && <p className="text-red-600">{loginError}</p>}
           </div>
+        </form>
+        <div>
           <label className="label text-center">
             <span className="mx-auto mt-2 label-text ">
               New to Doctors Portal?{' '}
@@ -66,7 +84,7 @@ const Login = () => {
               Continue With Google
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import './Navbar.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const HandleToggleClick = () => {
     setOpen(!open);
+  };
+  const { logOut, user } = useContext(AuthContext);
+
+  const HandleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success('Logout Successful');
+      })
+      .catch((err) => console.log(err.message));
   };
 
   const menuList = (
@@ -19,20 +30,30 @@ const Navbar = () => {
         <NavLink to="/appointment">Appointment</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <NavLink to="/reviews">Reviews</NavLink>
-      </li>
-      <li onClick={HandleToggleClick}>
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
-      <li onClick={HandleToggleClick}>
-        <NavLink to="/login">Log in</NavLink>
-      </li>
-      <li onClick={HandleToggleClick}>
-        <NavLink to="/register">Register</NavLink>
-      </li>
-      <li onClick={HandleToggleClick}>
-        <button>Log Out</button>
-      </li>
+      {user && user.uid ? (
+        <>
+          <li onClick={HandleToggleClick}>
+            <NavLink to="/reviews">Reviews</NavLink>
+          </li>
+          <li onClick={HandleToggleClick}>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+          <li onClick={HandleLogOut}>
+            <button>Log Out</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li onClick={HandleToggleClick}>
+            <NavLink to="/login">Log in</NavLink>
+          </li>
+          <li onClick={HandleToggleClick}>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+        </>
+      )}
     </React.Fragment>
   );
   return (
