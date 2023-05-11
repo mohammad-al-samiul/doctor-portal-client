@@ -9,14 +9,15 @@ const Signup = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
+    resetField
   } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, profileUpdate } = useContext(AuthContext);
   const [signupError, setSignupError] = useState('');
 
   const handleSignUp = (data) => {
     console.log(data);
-
+    const name = data.name;
     const email = data.email;
     const password = data.password;
     setSignupError('');
@@ -24,6 +25,18 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        resetField('name');
+        resetField('email');
+        resetField('password');
+        const userInfo = {
+          displayName: name
+        };
+        console.log(userInfo);
+        profileUpdate(userInfo)
+          .then(() => {
+            console.log('Profile Updated');
+          })
+          .catch((err) => console.log(err.message));
       })
       .catch((error) => {
         console.log(error.message);

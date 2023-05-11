@@ -8,7 +8,8 @@ const Login = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
+    resetField
   } = useForm();
   const [loginError, setLoginError] = useState('');
 
@@ -20,6 +21,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        resetField('email');
+        resetField('password');
       })
       .catch((error) => {
         console.log(error.message);
