@@ -1,9 +1,14 @@
+/* eslint-disable no-useless-escape */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit
+  } = useForm();
   const handleSignUp = (data) => {
     console.log(data);
   };
@@ -17,13 +22,23 @@ const Signup = () => {
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-              <input type="text" className="input input-bordered w-full" {...register('name')} />
+              <input
+                type="text"
+                className="input input-bordered w-full"
+                {...register('name', { required: 'Name is required' })}
+              />
+              {errors.name && <p className="text-red-600">{errors.name?.message}</p>}
             </div>
             <div className="form-control w-full ">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input type="email" className="input input-bordered w-full" {...register('email')} />
+              <input
+                type="email"
+                className="input input-bordered w-full"
+                {...register('email', { required: 'Email Address is required' })}
+              />
+              {errors.email && <p className="text-red-600">{errors.email?.message}</p>}
             </div>
             <div className="form-control w-full ">
               <label className="label">
@@ -32,13 +47,25 @@ const Signup = () => {
               <input
                 type="password"
                 className="input input-bordered w-full"
-                {...register('password')}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be 6 characters'
+                  },
+                  pattern: {
+                    value:
+                      /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
+                    message: 'Password must be strong'
+                  }
+                })}
               />
               <label className="label">
                 <span className="label-text">
                   <Link className="hover:underline">Forgot Password?</Link>
                 </span>
               </label>
+              {errors.password && <p className="text-red-600">{errors.password?.message}</p>}
             </div>
             <button className="mt-3 btn btn-primary w-full text-white">Register</button>
             <label className="label ">
