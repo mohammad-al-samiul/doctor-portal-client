@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './Login.css';
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleSignIn } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -12,6 +12,21 @@ const Login = () => {
     resetField
   } = useForm();
   const [loginError, setLoginError] = useState('');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((err) => console.log(err.message));
+  };
 
   const handleLogin = (data) => {
     const email = data.email;
@@ -21,6 +36,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
         resetField('email');
         resetField('password');
       })
@@ -82,6 +98,7 @@ const Login = () => {
           <div className="divider">OR</div>
           <div>
             <button
+              onClick={handleGoogleSignIn}
               className="mt-4 btn  btn-outline hover:text-white hover:bg-[#3A4256] w-full"
               type="submit">
               Continue With Google
