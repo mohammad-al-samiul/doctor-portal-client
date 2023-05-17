@@ -7,32 +7,24 @@ import BookingModal from '../BookingModal/BookingModal';
 import AppointmentCard from './AppointmentCard/AppointmentCard';
 
 const AvailableAppointment = ({ selectedDate }) => {
-  // const [appointment, setAppointment] = useState([]);
   const [treatment, setTreatment] = useState(null);
-  // const [loading, setLoading] = useState(false);
-
-  const { data: appointment = [], isLoading } = useQuery({
-    queryKey: ['appointmentOptions'],
+  const date = format(selectedDate, 'PP');
+  const {
+    data: appointment = [],
+    isLoading,
+    refetch
+  } = useQuery({
+    queryKey: ['appointmentOptions', date],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/appointmentOptions');
+      const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`);
       const data = await res.json();
       return data;
-      // queryFn: () => fetch('http://localhost:5000/appointmentOptions').then((res) => res.json())
     }
   });
 
   if (isLoading) {
     return <Spinner />;
   }
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetch('http://localhost:5000/appointmentOptions')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAppointment(data);
-  //       setLoading(false);
-  //     });
-  // }, []);
 
   return (
     <section className="mt-20">
@@ -49,7 +41,8 @@ const AvailableAppointment = ({ selectedDate }) => {
           <BookingModal
             setTreatment={setTreatment}
             treatment={treatment}
-            selectedDate={selectedDate}></BookingModal>
+            selectedDate={selectedDate}
+            refetch={refetch}></BookingModal>
         )}
       </div>
     </section>

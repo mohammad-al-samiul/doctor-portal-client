@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
-const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
+const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
   const { name, slots } = treatment;
+  const { user } = useContext(AuthContext);
   const date = format(selectedDate, 'PP');
 
   const handleBooking = (event) => {
@@ -26,8 +29,23 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
       phone
     };
 
-    console.log(booking);
-    setTreatment(null);
+    fetch('http://localhost:5000/bookings', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(booking)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success('Booking Confirmed');
+          setTreatment(null);
+          refetch();
+        } else {
+          toast.error(`${data.message}`);
+        }
+      });
   };
   return (
     <div>
@@ -57,6 +75,8 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
             <input
               name="name"
               type="text"
+              readOnly
+              defaultValue={user?.displayName}
               placeholder="Full Name"
               className="input input-bordered w-full mt-3"
             />
@@ -69,6 +89,8 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
             <input
               name="email"
               type="text"
+              readOnly
+              defaultValue={user?.email}
               placeholder="Email"
               className="input input-bordered w-full mt-3"
             />

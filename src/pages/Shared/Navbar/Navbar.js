@@ -10,7 +10,7 @@ const Navbar = () => {
     setOpen(!open);
   };
   const { logOut, user } = useContext(AuthContext);
-
+  console.log(user);
   const HandleLogOut = () => {
     logOut()
       .then(() => {
