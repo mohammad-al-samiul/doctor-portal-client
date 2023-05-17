@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import Spinner from '../../Components/Button/Spinner/Spinner';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import './PrivateRoutes.css';
 
@@ -10,11 +11,7 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="flex-box">
-        <div className="w-12 h-12 rounded-full animate-spin border-4 border-dashed border-secondary border-t-transparent"></div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (user) {

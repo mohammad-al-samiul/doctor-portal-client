@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import './Navbar.css';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const HandleToggleClick = () => {
     setOpen(!open);
   };
@@ -13,6 +14,7 @@ const Navbar = () => {
   const HandleLogOut = () => {
     logOut()
       .then(() => {
+        navigate('/');
         toast.success('Logout Successful');
       })
       .catch((err) => console.log(err.message));

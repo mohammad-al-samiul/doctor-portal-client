@@ -2,7 +2,7 @@
 /* eslint-disable no-useless-escape */
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Signup = () => {
@@ -39,7 +39,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+
         resetField('name');
         resetField('email');
         resetField('password');
@@ -50,6 +50,7 @@ const Signup = () => {
         profileUpdate(userInfo)
           .then(() => {
             console.log('Profile Updated');
+            navigate(from, { replace: true });
           })
           .catch((err) => console.log(err.message));
       })
