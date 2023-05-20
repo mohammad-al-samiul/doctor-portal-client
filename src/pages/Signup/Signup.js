@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
   const {
@@ -14,10 +15,17 @@ const Signup = () => {
   } = useForm();
   const { createUser, profileUpdate, googleSignIn } = useContext(AuthContext);
   const [signupError, setSignupError] = useState('');
-
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail);
+
   const from = location.state?.from?.pathname || '/';
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -30,7 +38,7 @@ const Signup = () => {
   };
 
   const handleSignUp = (data) => {
-    console.log(data);
+    // console.log(data);
     const name = data.name;
     const email = data.email;
     const password = data.password;
@@ -38,7 +46,7 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        //console.log(user);
 
         resetField('name');
         resetField('email');
@@ -46,11 +54,11 @@ const Signup = () => {
         const userInfo = {
           displayName: name
         };
-        console.log(userInfo);
+        //console.log(userInfo);
         profileUpdate(userInfo)
           .then(() => {
-            console.log('Profile Updated');
-            navigate(from, { replace: true });
+            //console.log('Profile Updated');
+            saveUser(name, email);
           })
           .catch((err) => console.log(err.message));
       })
@@ -58,6 +66,23 @@ const Signup = () => {
         console.log(error.message);
         setSignupError(error.message);
       });
+
+    const saveUser = (name, email) => {
+      const user = { name, email };
+      const url = `http://localhost:5000/users`;
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setCreatedUserEmail(email);
+        });
+    };
   };
 
   return (

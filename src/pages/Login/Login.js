@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import useToken from '../../Hooks/useToken';
 import './Login.css';
 const Login = () => {
   const { loginUser, googleSignIn } = useContext(AuthContext);
@@ -12,11 +13,16 @@ const Login = () => {
     resetField
   } = useForm();
   const [loginError, setLoginError] = useState('');
-
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const [token] = useToken(loginUserEmail);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || '/';
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -36,7 +42,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        setLoginUserEmail(email);
         resetField('email');
         resetField('password');
       })

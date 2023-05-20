@@ -3,7 +3,7 @@ import Main from '../../Layouts/Main/Main';
 
 import DashboardLayout from '../../Layouts/DashboardLayout/DashboardLayout';
 import Appointment from '../../Pages/Appointment/Appointment/Appointment';
-import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
+import MyAppointment from '../../Pages/Dashboard/Dashboard/MyAppointment/MyAppointment';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
 import Signup from '../../Pages/Signup/Signup';
@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <MyAppointment />
       }
     ]
   }
