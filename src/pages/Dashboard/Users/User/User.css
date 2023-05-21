@@ -1,0 +1,27 @@
+.button-admin-design {
+  color: black;
+  border: 1px solid #19d3ae;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.button-admin-design:hover {
+  color: white;
+  background-color: #19d3ae;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.button-delete-design {
+  color: black;
+  border: 1px solid #f3062acc;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.button-delete-design:hover {
+  color: white;
+  background-color: #f3062acc;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
