@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import Spinner from '../../../../Components/Button/Spinner/Spinner';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import AppointmentTable from './AppointmentTable/AppointmentTable';
 
@@ -10,6 +11,7 @@ const MyAppointment = () => {
     queryKey: ['bookings', user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
+        method: 'GET',
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
         }
@@ -18,6 +20,9 @@ const MyAppointment = () => {
       return data;
     }
   });
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -35,11 +40,7 @@ const MyAppointment = () => {
             </tr>
           </thead>
           {bookings.map((book, i) => (
-            <AppointmentTable
-              key={i}
-              book={book}
-              index={i}
-              isLoading={isLoading}></AppointmentTable>
+            <AppointmentTable key={i} book={book} index={i}></AppointmentTable>
           ))}
         </table>
       </div>

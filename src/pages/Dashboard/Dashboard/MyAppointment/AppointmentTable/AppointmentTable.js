@@ -1,13 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Spinner from '../../../../../Components/Button/Spinner/Spinner';
 
-const AppointmentTable = ({ index, book, isLoading }) => {
+const AppointmentTable = ({ index, book }) => {
   console.log(book);
   const { patientName, treatmentName, appointmentDate, slot } = book;
-  if (isLoading) {
-    return <Spinner />;
-  }
+
   return (
     <tbody>
       {/* row 2 */}
