@@ -39,9 +39,10 @@ const MyAppointment = () => {
               <th>Time</th>
             </tr>
           </thead>
-          {bookings.map((book, i) => (
-            <AppointmentTable key={i} book={book} index={i}></AppointmentTable>
-          ))}
+          {bookings &&
+            bookings.map((book, i) => (
+              <AppointmentTable key={i} book={book} index={i}></AppointmentTable>
+            ))}
         </table>
       </div>
     </div>

@@ -47,10 +47,9 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         //console.log(user);
-
-        resetField('name');
-        resetField('email');
-        resetField('password');
+        // resetField('name');
+        // resetField('email');
+        // resetField('password');
         const userInfo = {
           displayName: name
         };

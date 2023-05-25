@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { toast } from 'react-toastify';
-import './User.css';
-const User = ({ index, user, refetch }) => {
+import './AllUser.css';
+const AllUser = ({ index, user, refetch }) => {
   const { name, email, _id } = user;
   const handleMakeAdmin = (id) => {
     console.log(id);
@@ -46,4 +46,4 @@ const User = ({ index, user, refetch }) => {
   );
 };
 
-export default User;
+export default AllUser;

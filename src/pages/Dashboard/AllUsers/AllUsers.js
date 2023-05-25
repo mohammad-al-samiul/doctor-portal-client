@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Spinner from '../../../Components/Button/Spinner/Spinner';
-import User from './User/User';
+import AllUser from './AllUser/AllUser';
 
-const Users = () => {
+const AllUsers = () => {
   const {
     data: users = [],
     isLoading,
@@ -37,7 +37,7 @@ const Users = () => {
           </thead>
           <tbody>
             {users.map((user, i) => (
-              <User key={i} user={user} refetch={refetch} index={i}></User>
+              <AllUser key={i} user={user} refetch={refetch} index={i}></AllUser>
             ))}
           </tbody>
         </table>
@@ -46,4 +46,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default AllUsers;
