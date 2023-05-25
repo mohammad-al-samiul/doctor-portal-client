@@ -6,6 +6,7 @@ import Appointment from '../../Pages/Appointment/Appointment/Appointment';
 import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import MyAppointment from '../../Pages/Dashboard/Dashboard/MyAppointment/MyAppointment';
+import ManageDoctor from '../../Pages/Dashboard/ManageDoctor/ManageDoctor';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
 import Signup from '../../Pages/Signup/Signup';
@@ -64,6 +65,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddDoctor />
+          </AdminRoute>
+        )
+      },
+      {
+        path: '/dashboard/managedoctor',
+        element: (
+          <AdminRoute>
+            <ManageDoctor />
           </AdminRoute>
         )
       }

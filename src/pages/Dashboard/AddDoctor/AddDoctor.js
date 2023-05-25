@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Spinner from '../../../Components/Button/Spinner/Spinner';
 
 const AddDoctor = () => {
@@ -9,8 +11,48 @@ const AddDoctor = () => {
     formState: { errors },
     handleSubmit
   } = useForm();
+
+  const navigate = useNavigate();
+  const imageHostKey = process.env.REACT_APP_image_bb;
+  // console.log(imageHostKey);
   const handleAddDoctor = (data) => {
-    console.log(data);
+    const photo = data.image[0];
+    // console.log(photo);
+    const formData = new FormData();
+    formData.append('image', photo);
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        console.log(imgData);
+        if (imgData.success) {
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            specialty: data.specialty,
+            photo: imgData.data.url
+          };
+          console.log(doctor);
+          fetch(`http://localhost:5000/doctors`, {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(doctor)
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.acknowledged) {
+                navigate('/dashboard/managedoctor');
+              }
+            });
+        }
+      });
   };
 
   const { data: specialties = [], isLoading } = useQuery({
@@ -75,7 +117,7 @@ const AddDoctor = () => {
           {errors.image && <p className="text-red-600">{errors.image?.message}</p>}
         </div>
 
-        <button className="mt-3 btn btn-primary w-full text-white">Register</button>
+        <button className="mt-3 btn btn-primary w-full text-white">Add Doctor</button>
       </form>
     </div>
   );
