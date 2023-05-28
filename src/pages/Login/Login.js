@@ -34,7 +34,9 @@ const Login = () => {
         console.log(user);
         navigate(from, { replace: true });
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const handleLogin = (data) => {
@@ -44,8 +46,9 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        setLoginUserEmail(email);
+        // console.log(user);
+        setLoginUserEmail(user.email);
+        console.log(user.email);
         resetField('email');
         resetField('password');
       })

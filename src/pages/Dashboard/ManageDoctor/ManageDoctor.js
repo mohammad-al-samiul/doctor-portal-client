@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Spinner from '../../../Components/Button/Spinner/Spinner';
 import ConfirmationModal from '../../../Components/ConfirmationModal/ConfirmationModal';
 
@@ -11,21 +12,48 @@ const ManageDoctor = () => {
     setDeletingDoctor(null);
   };
 
-  const handleDeleteDoctor = (data) => {
-    console.log(data);
-  };
-
-  const { data: doctors = [], isLoading } = useQuery({
+  const {
+    data: doctors,
+    isLoading,
+    refetch
+  } = useQuery({
     queryKey: ['doctors'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/doctors`);
-      const data = await res.json();
-      return data;
+      try {
+        const res = await fetch('http://localhost:5000/doctors', {
+          headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+          }
+        });
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   });
+
+  //http://localhost:5000/doctors
   if (isLoading) {
     return <Spinner />;
   }
+
+  const handleDeleteDoctor = (doctor) => {
+    console.log(doctor._id);
+    fetch(`http://localhost:5000/doctors/${doctor._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Doctor ${doctor.name} deleted successfully`);
+        }
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -73,7 +101,7 @@ const ManageDoctor = () => {
           title={`Are you sure want to delete?`}
           message={`if you delete ${deletingDoctor.name}.It can be undone`}
           closeModal={closeModal}
-          actionDelete={handleDeleteDoctor}
+          handleDeleteDoctor={handleDeleteDoctor}
           deletingDoctor={deletingDoctor}></ConfirmationModal>
       )}
     </div>

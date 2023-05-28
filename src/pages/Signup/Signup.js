@@ -56,7 +56,7 @@ const Signup = () => {
         //console.log(userInfo);
         profileUpdate(userInfo)
           .then(() => {
-            //console.log('Profile Updated');
+            console.log('Profile Updated');
             saveUser(name, email);
           })
           .catch((err) => console.log(err.message));

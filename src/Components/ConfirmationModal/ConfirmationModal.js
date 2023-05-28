@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
-const ConfirmationModal = ({ title, message, closeModal, actionDelete, deletingDoctor }) => {
+const ConfirmationModal = ({ title, message, closeModal, handleDeleteDoctor, deletingDoctor }) => {
   return (
     <div>
       <input type="checkbox" id="confirmation-modal" className="modal-toggle" />
@@ -12,7 +12,7 @@ const ConfirmationModal = ({ title, message, closeModal, actionDelete, deletingD
           <p className="py-4">{message}</p>
           <div className="modal-action">
             <label
-              onClick={() => actionDelete(deletingDoctor)}
+              onClick={() => handleDeleteDoctor(deletingDoctor)}
               htmlFor="confirmation-modal"
               className="btn btn-outline">
               Ok
