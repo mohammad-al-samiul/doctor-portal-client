@@ -15,7 +15,7 @@ const Login = () => {
   const [loginError, setLoginError] = useState('');
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token] = useToken(loginUserEmail);
-  console.log(token);
+  //console.log(token);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -48,7 +48,7 @@ const Login = () => {
         const user = result.user;
         // console.log(user);
         setLoginUserEmail(user.email);
-        console.log(user.email);
+        //console.log(user.email);
         resetField('email');
         resetField('password');
       })

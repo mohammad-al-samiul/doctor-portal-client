@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import './Navbar.css';
 const Navbar = () => {

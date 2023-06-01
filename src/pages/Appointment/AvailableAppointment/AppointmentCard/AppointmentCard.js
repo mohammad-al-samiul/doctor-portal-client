@@ -3,7 +3,7 @@
 import React from 'react';
 import './AppointmentCard.css';
 const AppointmentCard = ({ card, setTreatment }) => {
-  const { name, slots } = card;
+  const { name, slots, price } = card;
 
   return (
     <div className="card w-96 shadow-2xl">
@@ -13,6 +13,7 @@ const AppointmentCard = ({ card, setTreatment }) => {
         <p>
           {slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available
         </p>
+        <p>Price : ${price}</p>
 
         {slots.length === 0 ? (
           <>

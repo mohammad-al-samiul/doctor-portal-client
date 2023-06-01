@@ -2,11 +2,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
-import { toast } from 'react-toastify';
+
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
-  const { name, slots } = treatment;
+  const { name, slots, price } = treatment;
   const { user } = useContext(AuthContext);
   const date = format(selectedDate, 'PP');
 
@@ -26,7 +27,8 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       slot,
       appointmentDate: date,
       email,
-      phone
+      phone,
+      price
     };
 
     fetch('http://localhost:5000/bookings', {
@@ -40,6 +42,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success('Booking Confirmed');
+
           setTreatment(null);
           refetch();
         } else {
