@@ -2,13 +2,18 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
+import Spinner from '../../../Components/Button/Spinner/Spinner';
 import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 console.log(stripePromise);
 const Payment = () => {
   const booking = useLoaderData();
+  const navigation = useNavigation();
+  if (navigation === 'loading') {
+    return <Spinner />;
+  }
   console.log(booking);
   return (
     <div>
