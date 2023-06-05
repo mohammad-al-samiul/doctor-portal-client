@@ -5,17 +5,17 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe(process.env.REACT_APP_PK);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 console.log(stripePromise);
 const Payment = () => {
-  const data = useLoaderData();
-  console.log(data);
+  const booking = useLoaderData();
+  console.log(booking);
   return (
     <div>
       <h1>This is payment</h1>
       <div className="w-96 my-12">
         <Elements stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm booking={booking} />
         </Elements>
       </div>
     </div>

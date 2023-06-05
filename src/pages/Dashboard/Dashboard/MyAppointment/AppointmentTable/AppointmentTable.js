@@ -21,7 +21,7 @@ const AppointmentTable = ({ index, book }) => {
               <button className="button-admin-design ">Pay</button>
             </Link>
           )}
-          {book.price && book.paid && <button className="btn btn-success ">Paid</button>}
+          {book.price && book.paid && <button className="btn btn-success  text-white">Paid</button>}
         </td>
       </tr>
     </tbody>
