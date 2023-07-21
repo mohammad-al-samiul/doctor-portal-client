@@ -10,7 +10,7 @@ const DisplayError = () => {
   const HandleLogOut = () => {
     logOut()
       .then(() => {
-        navigate('/');
+        navigate('/login');
         toast.success('Logout Successful');
       })
       .catch((err) => console.log(err.message));

@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import './CheckoutForm.css';
 
 const CheckoutForm = ({ booking }) => {
@@ -12,6 +13,7 @@ const CheckoutForm = ({ booking }) => {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
+
   const { price, patientName, email, _id } = booking;
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const CheckoutForm = ({ booking }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!stripe || !elements) {
+    if (!stripe || !elements || processing) {
       return;
     }
 
@@ -45,13 +47,15 @@ const CheckoutForm = ({ booking }) => {
     });
 
     if (error) {
-      console.log('[error]', error);
+      console.log(error);
       setCardError(error);
     } else {
+      console.log('[PaymentMethod]', paymentMethod);
       setCardError('');
     }
     setSuccess('');
     setProcessiong(true);
+
     const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: card,
@@ -67,6 +71,7 @@ const CheckoutForm = ({ booking }) => {
       setCardError(confirmError.message);
       return;
     }
+
     if (paymentIntent.status === 'succeeded') {
       console.log('card', card);
       const payment = {
@@ -88,6 +93,7 @@ const CheckoutForm = ({ booking }) => {
         .then((data) => {
           console.log(data);
           if (data.insertedId) {
+            toast.success('Payment Completed');
             setSuccess('Congrats ! your payment completed');
             setTransactionId(paymentIntent.id);
           }
@@ -95,8 +101,9 @@ const CheckoutForm = ({ booking }) => {
     }
     setProcessiong(false);
   };
+
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -115,9 +122,9 @@ const CheckoutForm = ({ booking }) => {
           }}
         />
         <button
+          className="my-6 text-sm  bg-secondary  text-white font-bold py-2 px-4 rounded"
           type="submit"
-          className="btn btn-sm btn-secondary text-white my-6"
-          disabled={!stripe || !clientSecret || processing}>
+          disabled={!stripe || !clientSecret}>
           Pay
         </button>
       </form>
@@ -130,7 +137,7 @@ const CheckoutForm = ({ booking }) => {
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

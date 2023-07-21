@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import './AllUser.css';
 const AllUser = ({ index, user, refetch }) => {
   const { name, email, _id } = user;
