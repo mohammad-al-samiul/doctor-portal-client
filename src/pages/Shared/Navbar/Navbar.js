@@ -27,13 +27,13 @@ const Navbar = () => {
         <NavLink to="/home">Home</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/about-us">About</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
         <NavLink to="/appointment">Appointment</NavLink>
       </li>
       <li onClick={HandleToggleClick}>
-        <NavLink to="/contact">Contact Us</NavLink>
+        <NavLink to="/contact-us">Contact Us</NavLink>
       </li>
       {user && user.uid ? (
         <>

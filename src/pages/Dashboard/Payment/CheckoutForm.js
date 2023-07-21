@@ -122,9 +122,9 @@ const CheckoutForm = ({ booking }) => {
           }}
         />
         <button
-          className="my-6 text-sm  bg-secondary  text-white font-bold py-2 px-4 rounded"
+          className="my-6 text-sm  bg-secondary  text-white font-bold py-2 px-4 rounded disabled:opacity-25"
           type="submit"
-          disabled={!stripe || !clientSecret}>
+          disabled={!stripe || !clientSecret || transactionId}>
           Pay
         </button>
       </form>

@@ -2,7 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../Layouts/Main/Main';
 
 import DashboardLayout from '../../Layouts/DashboardLayout/DashboardLayout';
+import About from '../../Pages/About/About';
 import Appointment from '../../Pages/Appointment/Appointment/Appointment';
+import Contact from '../../Pages/Contact/Contact';
 import AddDoctor from '../../Pages/Dashboard/AddDoctor/AddDoctor';
 import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import MyAppointment from '../../Pages/Dashboard/Dashboard/MyAppointment/MyAppointment';
@@ -10,6 +12,7 @@ import ManageDoctor from '../../Pages/Dashboard/ManageDoctor/ManageDoctor';
 import Payment from '../../Pages/Dashboard/Payment/Payment';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
+import Reviews from '../../Pages/Reviews/Reviews';
 import DisplayError from '../../Pages/Shared/DisplayError/DisplayError';
 import Signup from '../../Pages/Signup/Signup';
 import AdminRoute from '../AdminRoute/AdminRoute';
@@ -32,6 +35,18 @@ export const router = createBrowserRouter([
       {
         path: '/appointment',
         element: <Appointment />
+      },
+      {
+        path: '/about-us',
+        element: <About />
+      },
+      {
+        path: '/contact-us',
+        element: <Contact />
+      },
+      {
+        path: '/reviews',
+        element: <Reviews />
       },
       {
         path: '/login',
