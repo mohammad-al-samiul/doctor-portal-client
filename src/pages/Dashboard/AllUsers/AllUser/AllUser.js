@@ -21,6 +21,23 @@ const AllUser = ({ index, user, refetch }) => {
         }
       });
   };
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/user/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success('Deleted Successfully');
+          refetch();
+        }
+      });
+  };
+
   return (
     <tr className="">
       <th> {index + 1}</th>
@@ -40,7 +57,9 @@ const AllUser = ({ index, user, refetch }) => {
         )}
       </td>
       <td>
-        <button className="button-delete-design">Delete</button>
+        <button onClick={() => handleDelete(_id)} className="button-delete-design">
+          Delete
+        </button>
       </td>
     </tr>
   );
