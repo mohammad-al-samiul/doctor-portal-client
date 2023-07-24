@@ -12,8 +12,8 @@ const AllUser = ({ index, user, refetch }) => {
     setDeletingUser(null);
   };
 
-  const handleDeleteUser = (deletingUser) => {
-    fetch(`http://localhost:5000/user/${deletingUser._id}`, {
+  const handleDeleteUser = (id) => {
+    fetch(`http://localhost:5000/user/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

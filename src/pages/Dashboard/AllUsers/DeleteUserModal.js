@@ -11,7 +11,7 @@ const DeleteUserModal = ({ title, message, closeModal, handleDeleteUser, deletin
           <p className="py-4">{message}</p>
           <div className="modal-action">
             <label
-              onClick={() => handleDeleteUser(deletingUser)}
+              onClick={() => handleDeleteUser(deletingUser._id)}
               htmlFor="user-delete-modal"
               className="btn btn-outline">
               Ok
