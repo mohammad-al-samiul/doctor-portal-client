@@ -1,32 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-hot-toast';
-import DeleteUserModal from '../DeleteUserModal';
 import './AllUser.css';
-const AllUser = ({ index, user, refetch }) => {
+const AllUser = ({ index, user, refetch, setDeletingUser }) => {
   const { name, email, _id } = user;
-
-  const [deletingUser, setDeletingUser] = useState(null);
-
-  const closeModal = () => {
-    setDeletingUser(null);
-  };
-
-  const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/user/${id}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: `bearer ${localStorage.getItem('accessToken')}`
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success('Deleted Successfully');
-          refetch();
-        }
-      });
-  };
 
   const handleMakeAdmin = (id) => {
     console.log(id);
@@ -76,14 +53,6 @@ const AllUser = ({ index, user, refetch }) => {
           </label>
         </td>
       </tr>
-      {deletingUser && (
-        <DeleteUserModal
-          title={`Are you sure want to delete?`}
-          message={`if you delete ${deletingUser.name}.It can be undone`}
-          closeModal={closeModal}
-          handleDeleteUser={handleDeleteUser}
-          deletingUser={deletingUser}></DeleteUserModal>
-      )}
     </>
   );
 };

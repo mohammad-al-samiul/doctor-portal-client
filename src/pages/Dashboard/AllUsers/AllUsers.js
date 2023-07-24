@@ -1,9 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Spinner from '../../../Components/Button/Spinner/Spinner';
 import AllUser from './AllUser/AllUser';
+import DeleteUserModal from './DeleteUserModal';
 
 const AllUsers = () => {
+  const [deletingUser, setDeletingUser] = useState(null);
+
+  const closeModal = () => {
+    setDeletingUser(null);
+  };
+
+  const handleDeleteUser = (id) => {
+    fetch(`http://localhost:5000/user/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success('Deleted Successfully');
+          refetch();
+        }
+      });
+  };
+
   const {
     data: users = [],
     isLoading,
@@ -38,10 +62,23 @@ const AllUsers = () => {
           </thead>
           <tbody>
             {users.map((user, i) => (
-              <AllUser key={i} user={user} refetch={refetch} index={i}></AllUser>
+              <AllUser
+                setDeletingUser={setDeletingUser}
+                key={i}
+                user={user}
+                refetch={refetch}
+                index={i}></AllUser>
             ))}
           </tbody>
         </table>
+        {deletingUser && (
+          <DeleteUserModal
+            title={`Are you sure want to delete?`}
+            message={`if you delete ${deletingUser.name}.It can be undone`}
+            closeModal={closeModal}
+            handleDeleteUser={handleDeleteUser}
+            deletingUser={deletingUser}></DeleteUserModal>
+        )}
       </div>
     </div>
   );
