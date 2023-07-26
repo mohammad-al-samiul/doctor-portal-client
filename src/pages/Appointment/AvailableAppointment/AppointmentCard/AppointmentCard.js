@@ -6,7 +6,7 @@ const AppointmentCard = ({ card, setTreatment }) => {
   const { name, slots, price } = card;
 
   return (
-    <div className="card w-96 shadow-2xl">
+    <div className="card lg:w-96 shadow-2xl">
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
         <p>{slots.length > 0 ? slots[0] : 'Try Another Day'}</p>
