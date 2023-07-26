@@ -7,7 +7,7 @@ const AllUser = ({ index, user, refetch, setDeletingUser }) => {
 
   const handleMakeAdmin = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://doctors-portal-b93i.onrender.com/users/admin/${id}`, {
       method: 'PUT',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

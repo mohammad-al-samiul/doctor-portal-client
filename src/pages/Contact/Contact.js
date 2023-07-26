@@ -13,35 +13,38 @@ const Contact = () => {
               Got a technical issue? Want to send feedback about a beta feature? Need details about
               our Business plan? Let us know.
             </p>
-            <form action="#" className="space-y-8">
+            <form action="https://formspree.io/f/xbjvlqkk" method="POST" className="space-y-8">
               <div>
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  name="email"
                   type="email"
                   className="input input-bordered w-full"
                   placeholder="Enter your email"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label htmlFor="subject" className="label">
                   <span className="label-text"> Subject</span>
                 </label>
 
                 <input
+                  name="subject"
                   type="text"
                   id="subject"
                   className="input input-bordered w-full "
                   placeholder="Let us know how we can help you"
                 />
-              </div>
+              </div> */}
               <div className="sm:col-span-2">
                 <label htmlFor="message" className="label">
                   <span className="label-text"> Your message</span>
                 </label>
 
                 <textarea
+                  name="message"
                   id="message"
                   rows="6"
                   className="p-2.5 w-full textarea textarea-bordered"

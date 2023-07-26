@@ -68,7 +68,7 @@ const Signup = () => {
 
     const saveUser = (name, email) => {
       const user = { name, email };
-      const url = `http://localhost:5000/users`;
+      const url = `https://doctors-portal-b93i.onrender.com/users`;
       fetch(url, {
         method: 'POST',
         headers: {

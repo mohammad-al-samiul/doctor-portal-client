@@ -36,7 +36,7 @@ const AddDoctor = () => {
             photo: imgData.data.url
           };
           console.log(doctor);
-          fetch(`http://localhost:5000/doctors`, {
+          fetch(`https://doctors-portal-b93i.onrender.com/doctors`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -58,7 +58,7 @@ const AddDoctor = () => {
   const { data: specialties = [], isLoading } = useQuery({
     queryKey: [''],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/appointmentSpecialty`);
+      const res = await fetch(`https://doctors-portal-b93i.onrender.com/appointmentSpecialty`);
       const data = await res.json();
       return data;
     }
@@ -67,7 +67,7 @@ const AddDoctor = () => {
     return <Spinner />;
   }
   return (
-    <div className="w-96">
+    <div className="lg:w-96 px-8">
       <form onSubmit={handleSubmit(handleAddDoctor)}>
         <div className="form-control w-full ">
           <label className="label">

@@ -18,7 +18,7 @@ const CheckoutForm = ({ booking }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://doctors-portal-b93i.onrender.com/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({ booking }) => {
         bookingId: _id
       };
 
-      fetch(`http://localhost:5000/payments`, {
+      fetch(`https://doctors-portal-b93i.onrender.com/payments`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

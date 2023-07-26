@@ -1,15 +1,19 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import './Navbar.css';
-const Navbar = () => {
+const Navbar = ({ handleSidebar }) => {
   const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
   const HandleToggleClick = () => {
     setOpen(!open);
   };
+
   const { logOut, user } = useContext(AuthContext);
   console.log(user);
   const HandleLogOut = () => {
@@ -98,8 +102,12 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{menuList}</ul>
         </div>
-        <div className="w-full flex justify-end lg:hidden md:hidden">
-          <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+        <div className="w-full flex justify-end lg:hidden md:hidden ">
+          <label
+            onClick={handleSidebar}
+            htmlFor="dashboard-drawer"
+            tabIndex={2}
+            className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

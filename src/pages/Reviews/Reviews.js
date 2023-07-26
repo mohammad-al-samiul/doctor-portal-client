@@ -75,7 +75,7 @@ const Reviews = () => {
       <div className="mt-10">
         <p className="text-center text-3xl font-bold">What Our Patients Says</p>
       </div>
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+      <div className="mt-20 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
         {reviewInfo.map((review, i) => (
           <Review key={i} review={review}></Review>
         ))}

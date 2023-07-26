@@ -3,7 +3,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="my-10">
+    <div className="lg:my-10">
       <section className="py-10 lg:py-20 bg-white shadow-xl rounded-lg">
         <div className="max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
           <div className="flex flex-wrap ">
@@ -23,7 +23,7 @@ const About = () => {
                 <div className="flex flex-wrap items-center">
                   <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
                     <div className="p-6 bg-white dark:bg-gray-700">
-                      <span className="text-blue-500 dark:text-blue-400">
+                      <span className="text-blue-500 dark:text-secondary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -43,7 +43,7 @@ const About = () => {
                   </div>
                   <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
                     <div className="p-6 bg-white dark:bg-gray-700">
-                      <span className="text-blue-500 dark:text-blue-400">
+                      <span className="text-blue-500 dark:text-secondary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -67,7 +67,7 @@ const About = () => {
                   </div>
                   <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
                     <div className="p-6 bg-white dark:bg-gray-700">
-                      <span className="text-blue-500 dark:text-blue-400">
+                      <span className="text-blue-500 dark:text-secondary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -86,7 +86,7 @@ const About = () => {
                   </div>
                   <div className="w-full px-4 mb-6 sm:w-1/2 md:w-1/2 lg:mb-6">
                     <div className="p-6 bg-white dark:bg-gray-700">
-                      <span className="text-blue-500 dark:text-blue-400">
+                      <span className="text-blue-500 dark:text-secondary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"

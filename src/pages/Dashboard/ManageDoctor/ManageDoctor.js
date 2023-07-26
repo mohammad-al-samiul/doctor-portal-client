@@ -20,7 +20,7 @@ const ManageDoctor = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       try {
-        const res = await fetch('http://localhost:5000/doctors', {
+        const res = await fetch('https://doctors-portal-b93i.onrender.com/doctors', {
           headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
           }
@@ -33,14 +33,14 @@ const ManageDoctor = () => {
     }
   });
 
-  //http://localhost:5000/doctors
+  //https://doctors-portal-b93i.onrender.com/doctors
   if (isLoading) {
     return <Spinner />;
   }
 
   const handleDeleteDoctor = (doctor) => {
     console.log(doctor._id);
-    fetch(`http://localhost:5000/doctors/${doctor._id}`, {
+    fetch(`https://doctors-portal-b93i.onrender.com/doctors/${doctor._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

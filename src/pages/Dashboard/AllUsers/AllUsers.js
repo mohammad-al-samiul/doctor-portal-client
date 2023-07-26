@@ -13,7 +13,7 @@ const AllUsers = () => {
   };
 
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`https://doctors-portal-b93i.onrender.com/user/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/users');
+      const res = await fetch('https://doctors-portal-b93i.onrender.com/users');
       const data = res.json();
       return data;
     }
