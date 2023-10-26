@@ -6,7 +6,7 @@ import AppointmentTable from './AppointmentTable/AppointmentTable';
 
 const MyAppointment = () => {
   const { user } = useContext(AuthContext);
-  const url = `https://doctors-portal-b93i.onrender.com/bookings?email=${user?.email}`;
+  const url = `https://doctors-portal-server-chi-seven.vercel.app/bookings?email=${user?.email}`;
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ['bookings', user?.email],
     queryFn: async () => {

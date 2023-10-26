@@ -5,7 +5,7 @@ const useAdmin = (email) => {
   const [isAdminLoading, setAdminLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`https://doctors-portal-b93i.onrender.com/users/admin/${email}`)
+      fetch(`https://doctors-portal-server-chi-seven.vercel.app/users/admin/${email}`)
         .then((res) => res.json())
         .then((data) => {
           //console.log(data);

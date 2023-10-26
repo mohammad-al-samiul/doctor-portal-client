@@ -31,7 +31,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       price
     };
 
-    fetch('https://doctors-portal-b93i.onrender.com/bookings', {
+    fetch('https://doctors-portal-server-chi-seven.vercel.app/bookings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

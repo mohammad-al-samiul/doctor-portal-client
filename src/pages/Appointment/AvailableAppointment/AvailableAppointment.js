@@ -17,7 +17,7 @@ const AvailableAppointment = ({ selectedDate }) => {
     queryKey: ['appointmentOptions', date],
     queryFn: async () => {
       const res = await fetch(
-        `https://doctors-portal-b93i.onrender.com/appointmentOptions?date=${date}`
+        `https://doctors-portal-server-chi-seven.vercel.app/appointmentOptions?date=${date}`
       );
       const data = await res.json();
       return data;

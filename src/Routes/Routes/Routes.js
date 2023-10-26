@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
         path: '/dashboard/payment/:id',
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`https://doctors-portal-b93i.onrender.com/bookings/${params.id}`)
+          fetch(`https://doctors-portal-server-chi-seven.vercel.app/bookings/${params.id}`)
       }
     ]
   }

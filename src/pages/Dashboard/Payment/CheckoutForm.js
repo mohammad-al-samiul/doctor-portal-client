@@ -18,7 +18,7 @@ const CheckoutForm = ({ booking }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch('https://doctors-portal-b93i.onrender.com/create-payment-intent', {
+    fetch('https://doctors-portal-server-chi-seven.vercel.app/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({ booking }) => {
         bookingId: _id
       };
 
-      fetch(`https://doctors-portal-b93i.onrender.com/payments`, {
+      fetch(`https://doctors-portal-server-chi-seven.vercel.app/payments`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

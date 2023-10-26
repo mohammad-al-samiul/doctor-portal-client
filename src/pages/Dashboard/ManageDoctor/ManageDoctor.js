@@ -20,7 +20,7 @@ const ManageDoctor = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       try {
-        const res = await fetch('https://doctors-portal-b93i.onrender.com/doctors', {
+        const res = await fetch('https://doctors-portal-server-chi-seven.vercel.app/doctors', {
           headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
           }
@@ -33,14 +33,14 @@ const ManageDoctor = () => {
     }
   });
 
-  //https://doctors-portal-b93i.onrender.com/doctors
+  //https://doctors-portal-server-chi-seven.vercel.app/doctors
   if (isLoading) {
     return <Spinner />;
   }
 
   const handleDeleteDoctor = (doctor) => {
     console.log(doctor._id);
-    fetch(`https://doctors-portal-b93i.onrender.com/doctors/${doctor._id}`, {
+    fetch(`https://doctors-portal-server-chi-seven.vercel.app/doctors/${doctor._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

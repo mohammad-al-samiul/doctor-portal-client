@@ -36,7 +36,7 @@ const AddDoctor = () => {
             photo: imgData.data.url
           };
           console.log(doctor);
-          fetch(`https://doctors-portal-b93i.onrender.com/doctors`, {
+          fetch(`https://doctors-portal-server-chi-seven.vercel.app/doctors`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -58,7 +58,9 @@ const AddDoctor = () => {
   const { data: specialties = [], isLoading } = useQuery({
     queryKey: [''],
     queryFn: async () => {
-      const res = await fetch(`https://doctors-portal-b93i.onrender.com/appointmentSpecialty`);
+      const res = await fetch(
+        `https://doctors-portal-server-chi-seven.vercel.app/appointmentSpecialty`
+      );
       const data = await res.json();
       return data;
     }

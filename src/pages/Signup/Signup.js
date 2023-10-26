@@ -68,7 +68,7 @@ const Signup = () => {
 
     const saveUser = (name, email) => {
       const user = { name, email };
-      const url = `https://doctors-portal-b93i.onrender.com/users`;
+      const url = `https://doctors-portal-server-chi-seven.vercel.app/users`;
       fetch(url, {
         method: 'POST',
         headers: {

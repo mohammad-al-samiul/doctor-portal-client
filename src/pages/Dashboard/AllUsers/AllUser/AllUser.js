@@ -7,7 +7,7 @@ const AllUser = ({ index, user, refetch, setDeletingUser }) => {
 
   const handleMakeAdmin = (id) => {
     console.log(id);
-    fetch(`https://doctors-portal-b93i.onrender.com/users/admin/${id}`, {
+    fetch(`https://doctors-portal-server-chi-seven.vercel.app/users/admin/${id}`, {
       method: 'PUT',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
