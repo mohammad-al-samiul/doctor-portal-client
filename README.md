@@ -1,7 +1,7 @@
 # Title: "🏥 Doctor's Portal 🚀"
 
 # Description:
-Excited to unveil a cutting-edge Doctor's Portal built on React, Node.js, Express, and MongoDB! This platform redefines healthcare accessibility and efficiency, offering seamless appointment booking and management alongside robust user authentication and payment processing. From secure authentication to real-time appointment monitoring, join us in revolutionizing healthcare technology. #HealthTech #React #NodeJS #Express #MongoDB #DoctorPortal
+Excited to unveil a cutting-edge Doctor's Portal built on React, Node.js, Express, and MongoDB! This platform redefines healthcare accessibility and efficiency, offering seamless appointment booking and management alongside robust user authentication and payment processing. From secure authentication to real-time appointment monitoring.
 
 Key Features:
 
